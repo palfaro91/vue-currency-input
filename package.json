@@ -40,6 +40,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc --emitDeclarationOnly --declaration --outDir temp/types && rollup -c rollup.config.js"
   },
+  "precommit": ["build"],
   "peerDependencies": {
     "vue": "^2.7 || ^3.0.0"
   },
