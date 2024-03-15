@@ -514,6 +514,7 @@ function useCurrencyInput(options, autoEmit) {
             let el;
             if (options.ionic) {
                 el = (_a = (await (value === null || value === void 0 ? void 0 : value.$el.getInputElement()))) !== null && _a !== void 0 ? _a : value;
+                console.log('am i an el ', el);
             }
             else {
                 el = findInput((_b = value === null || value === void 0 ? void 0 : value.$el) !== null && _b !== void 0 ? _b : value);
