@@ -10,7 +10,7 @@ export function useCurrencyInput(options: CurrencyInputOptions, autoEmit?: boole
   const formattedValue = ref<string | null>(null)
   const numberValue = ref<number | null>(null)
 
-  const vm = getCurrentInstance()
+  const vm = options.vmInstance || getCurrentInstance()
   const emit = vm?.emit || vm?.proxy?.$emit?.bind(vm?.proxy)
   const props = (vm?.props || vm?.proxy?.$props) as Record<string, unknown>
   const isVue3 = version.startsWith('3')
@@ -18,10 +18,14 @@ export function useCurrencyInput(options: CurrencyInputOptions, autoEmit?: boole
   const modelValue: ComputedRef<number | null> = computed(() => props?.[isVue3 ? 'modelValue' : 'value'] as number)
   const inputEvent = isVue3 ? 'update:modelValue' : 'input'
   const changeEvent = lazyModel ? 'update:modelValue' : 'change'
-
-  watch(inputRef, (value) => {
+  watch(inputRef, async (value: any) => {
     if (value) {
-      const el = findInput((value as ComponentPublicInstance)?.$el ?? value)
+      let el
+      if (options.ionic) {
+        el = (await (value as ComponentPublicInstance)?.$el.getInputElement()) ?? value
+      } else {
+        el = findInput((value as ComponentPublicInstance)?.$el ?? value)
+      }
       if (el) {
         currencyInput = new CurrencyInput({
           el,

@@ -36,11 +36,13 @@ export interface CurrencyInputOptions {
   hideCurrencySymbolOnFocus?: boolean
   hideGroupingSeparatorOnFocus?: boolean
   hideNegligibleDecimalDigitsOnFocus?: boolean
+  ionic?: boolean
   locale?: string
   precision?: NumberRange | number
   useGrouping?: boolean
   valueRange?: NumberRange
   valueScaling?: ValueScaling
+  vmInstance?: any
 }
 
 export interface UseCurrencyInput {

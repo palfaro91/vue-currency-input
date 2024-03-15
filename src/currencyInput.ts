@@ -149,10 +149,10 @@ export class CurrencyInput {
           this.toInteger(Math.abs(numberValue)) > Number.MAX_SAFE_INTEGER
             ? this.formattedValue
             : this.currencyFormat.format(numberValue, {
-                useGrouping: this.options.useGrouping !== false && !(this.focus && this.options.hideGroupingSeparatorOnFocus),
-                minimumFractionDigits,
-                maximumFractionDigits
-              })
+              useGrouping: this.options.useGrouping !== false && !(this.focus && this.options.hideGroupingSeparatorOnFocus),
+              minimumFractionDigits,
+              maximumFractionDigits
+            })
       } else {
         formattedValue = conformedValue
       }
