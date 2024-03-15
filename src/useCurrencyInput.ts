@@ -23,7 +23,6 @@ export function useCurrencyInput(options: CurrencyInputOptions, autoEmit?: boole
       let el
       if (options.ionic) {
         el = (await (value as ComponentPublicInstance)?.$el.getInputElement()) ?? value
-        console.log('am i an el ', el)
       } else {
         el = findInput((value as ComponentPublicInstance)?.$el ?? value)
       }
